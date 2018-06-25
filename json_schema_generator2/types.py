@@ -76,11 +76,15 @@ class ObjectType(Base):
         "additionalProperties": False,
     }
 
+    @staticmethod
+    def get_real_key(k):
+        return k[:-1] if k[-1] in '?!' else k
+
     def after_gen(self, rv):
         for k, v in self.data.items():
-            real_k = k[:-1] if k[-1] in '?!' else k
+            real_k = self.get_real_key(k)
             if not k.endswith('?'):
-                rv['requried'].append(k)
+                rv['requried'].append(real_k)
 
             rv['properties'][real_k] = entry(v, k)
 

@@ -17,7 +17,7 @@ gh_repo = 'https://github.com/weaming/json-schema-generator'
 setup(
     name='json-schema-generator2',  # Required
 
-    version='0.1.2',  # Required
+    version='0.1.4',  # Required
 
     # This is a one-line description or tagline of what your project does.
     description='Pretty print json contains python style coments, string literal.',  # Required
@@ -70,7 +70,7 @@ setup(
     # executes the function `main` from this package when invoked:
     entry_points={  # Optional
         'console_scripts': [
-            'generate-json-schema=json_schema_generator.generator:main',
+            'generate-json-schema=json_schema_generator2.generator:main',
         ],
     },
 

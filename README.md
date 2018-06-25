@@ -47,6 +47,7 @@ Will produce:
 
 
 ```json
+
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": 1,
@@ -87,7 +88,7 @@ Will produce:
           "additionalProperties": false,
           "requried": [
             "age",
-            "gender!",
+            "gender",
             "name"
           ],
           "type": "object",
