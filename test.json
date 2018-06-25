@@ -1,0 +1,17 @@
+{
+  "account": {
+    "name": "",
+    "telephone?": "",
+    "address?": "",
+    "city": "",
+    "state": "",
+    "zip_code": "",
+    "balance": 3.14,
+    "child": {
+        "name": "",
+        "age": 13,
+        "gender!": "boy"
+    }
+  }
+}
+
