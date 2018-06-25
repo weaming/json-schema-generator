@@ -10,7 +10,7 @@
     "child": {
         "name": "",
         "age": 13,
-        "gender!": "boy"
+        "gender!": "BOY"
     }
   }
 }

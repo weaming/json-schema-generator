@@ -26,6 +26,10 @@ def entry(data, key=None):
 class Base(object):
     def __init__(self, data):
         self.data = data
+        self.after_init()
+
+    def after_init(self):
+        pass
 
     def gen(self):
         rv = {
@@ -92,6 +96,13 @@ class ObjectType(Base):
 class EnumType(Base):
     json_type = "string"
     properties = {'enum': []}
+
+    def after_init(self):
+        self.json_type = get_schema_type_for(self.data).json_type
+        assert self.json_type not in ['object', 'array']
+
+    def after_gen(self, rv):
+        rv['enum'].append(self.data)
 
 
 class JsonSchemaTypeNotFound(Exception):

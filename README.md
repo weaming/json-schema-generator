@@ -38,7 +38,7 @@ $ generate-json-schema help
     "child": {
         "name": "",
         "age": 13,
-        "gender!": "boy"
+        "gender!": "BOY"
     }
   }
 }
@@ -47,7 +47,6 @@ Will produce:
 
 
 ```json
-
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": 1,
@@ -94,7 +93,9 @@ Will produce:
           "type": "object",
           "properties": {
             "gender": {
-              "enum": [],
+              "enum": [
+                "BOY"
+              ],
               "type": "string"
             },
             "age": {
