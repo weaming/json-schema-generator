@@ -6,6 +6,16 @@ Generate the initial json schema from your given example json.
 
     pip install json-schema-generator2
 
+## Usage
+
+```
+$ generate-json-schema help
+ Usage:
+    cat sample.json | generate-json-schema
+    generate-json-schema sample.json
+    generate-json-schema sample.json > output.schema.json
+```
+
 ## Special rules to determine the type
 
 * suffix definitions
