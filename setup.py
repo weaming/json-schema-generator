@@ -15,9 +15,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 gh_repo = 'https://github.com/weaming/json-schema-generator'
 
 setup(
-    name='json-schema-generator',  # Required
+    name='json-schema-generator2',  # Required
 
-    version='0.1.0',  # Required
+    version='0.1.1',  # Required
 
     # This is a one-line description or tagline of what your project does.
     description='Pretty print json contains python style coments, string literal.',  # Required

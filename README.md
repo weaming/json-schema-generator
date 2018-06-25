@@ -2,6 +2,10 @@
 
 Generate the initial json schema from your given example json.
 
+## Install
+
+    pip install json-schema-generator2
+
 ## Special rules to determine the type
 
 * suffix definitions
