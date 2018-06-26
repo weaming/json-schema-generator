@@ -83,7 +83,7 @@ class ObjectType(Base):
     json_type = "object"
     properties = {
         'properties': {},
-        'requried': [],
+        'required': [],
         'additionalProperties': False,
     }
 
@@ -95,7 +95,7 @@ class ObjectType(Base):
         for k, v in self.data.items():
             real_k = self.get_real_key(k)
             if not k.endswith('?'):
-                rv['requried'].append(real_k)
+                rv['required'].append(real_k)
 
             rv['properties'][real_k] = entry(v, k)
             rv['properties'][real_k]['title'] = real_k.replace('_',

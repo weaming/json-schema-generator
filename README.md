@@ -54,7 +54,7 @@ Will produce:
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": 1,
   "additionalProperties": false,
-  "requried": [
+  "required": [
     "account"
   ],
   "type": "object",
@@ -103,7 +103,7 @@ Will produce:
             }
           },
           "additionalProperties": false,
-          "requried": [
+          "required": [
             "age",
             "gender",
             "name"
@@ -143,7 +143,7 @@ Will produce:
         }
       },
       "additionalProperties": false,
-      "requried": [
+      "required": [
         "hobby",
         "city",
         "name",
