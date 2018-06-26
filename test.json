@@ -7,11 +7,11 @@
     "state": "",
     "zip code": "",
     "balance": 100,
-    "child": {
+    "child": [{
         "name": "",
         "age": 18,
         "gender!": "BOY"
-    },
+    }],
     "hobby": [],
     "favorite numbers": [3.14]
   }

@@ -76,7 +76,10 @@ class ArrayType(Base):
     def after_gen(self, rv):
         if len(self.data) > 0:
             t = get_schema_type_for(self.data[0]).json_type
-            rv['items'] = {'type': t}
+            if t == ObjectType.json_type:
+                rv['items'] = entry(self.data[0])
+            else:
+                rv['items'] = {'type': t}
 
 
 class ObjectType(Base):

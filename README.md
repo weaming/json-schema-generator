@@ -61,6 +61,16 @@ Will produce:
   "properties": {
     "account": {
       "title": "Account",
+      "required": [
+        "hobby",
+        "city",
+        "name",
+        "favorite numbers",
+        "zip code",
+        "state",
+        "child",
+        "balance"
+      ],
       "properties": {
         "city": {
           "type": "string",
@@ -81,35 +91,38 @@ Will produce:
           "title": "Favorite Numbers"
         },
         "child": {
-          "title": "Child",
-          "properties": {
-            "gender": {
-              "enum": [
-                "BOY"
-              ],
-              "type": "string",
-              "id": "gender",
-              "title": "Gender"
-            },
-            "age": {
-              "type": "integer",
-              "id": "age",
-              "title": "Age"
-            },
-            "name": {
-              "type": "string",
-              "id": "name",
-              "title": "Name"
+          "items": {
+            "additionalProperties": false,
+            "required": [
+              "age",
+              "gender",
+              "name"
+            ],
+            "type": "object",
+            "properties": {
+              "gender": {
+                "enum": [
+                  "BOY"
+                ],
+                "type": "string",
+                "id": "gender",
+                "title": "Gender"
+              },
+              "age": {
+                "type": "integer",
+                "id": "age",
+                "title": "Age"
+              },
+              "name": {
+                "type": "string",
+                "id": "name",
+                "title": "Name"
+              }
             }
           },
-          "additionalProperties": false,
-          "required": [
-            "age",
-            "gender",
-            "name"
-          ],
-          "type": "object",
-          "id": "child"
+          "type": "array",
+          "id": "child",
+          "title": "Child"
         },
         "zip code": {
           "type": "string",
@@ -143,16 +156,6 @@ Will produce:
         }
       },
       "additionalProperties": false,
-      "required": [
-        "hobby",
-        "city",
-        "name",
-        "favorite numbers",
-        "zip code",
-        "state",
-        "child",
-        "balance"
-      ],
       "type": "object",
       "id": "account"
     }
