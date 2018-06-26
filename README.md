@@ -33,7 +33,7 @@ $ generate-json-schema help
     "address?": "",
     "city": "",
     "state": "",
-    "zip_code": "",
+    "zip code": "",
     "balance": 100,
     "child": {
         "name": "",
@@ -41,7 +41,7 @@ $ generate-json-schema help
         "gender!": "BOY"
     },
     "hobby": [],
-    "favorite_numbers": [3.14]
+    "favorite numbers": [3.14]
   }
 }
 ```
@@ -60,23 +60,48 @@ Will produce:
   "type": "object",
   "properties": {
     "account": {
-      "additionalProperties": false,
-      "requried": [
-        "hobby",
-        "city",
-        "name",
-        "favorite_numbers",
-        "state",
-        "child",
-        "balance",
-        "zip_code"
-      ],
-      "type": "object",
+      "title": "Account",
       "properties": {
         "city": {
-          "type": "string"
+          "type": "string",
+          "id": "city",
+          "title": "City"
+        },
+        "name": {
+          "type": "string",
+          "id": "name",
+          "title": "Name"
+        },
+        "favorite numbers": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array",
+          "id": "favorite_numbers",
+          "title": "Favorite Numbers"
         },
         "child": {
+          "title": "Child",
+          "properties": {
+            "gender": {
+              "enum": [
+                "BOY"
+              ],
+              "type": "string",
+              "id": "gender",
+              "title": "Gender"
+            },
+            "age": {
+              "type": "integer",
+              "id": "age",
+              "title": "Age"
+            },
+            "name": {
+              "type": "string",
+              "id": "name",
+              "title": "Name"
+            }
+          },
           "additionalProperties": false,
           "requried": [
             "age",
@@ -84,49 +109,52 @@ Will produce:
             "name"
           ],
           "type": "object",
-          "properties": {
-            "gender": {
-              "enum": [
-                "BOY"
-              ],
-              "type": "string"
-            },
-            "age": {
-              "type": "integer"
-            },
-            "name": {
-              "type": "string"
-            }
-          }
+          "id": "child"
         },
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
+        "zip code": {
+          "type": "string",
+          "id": "zip_code",
+          "title": "Zip Code"
         },
         "telephone": {
-          "type": "string"
+          "type": "string",
+          "id": "telephone",
+          "title": "Telephone"
         },
         "state": {
-          "type": "string"
+          "type": "string",
+          "id": "state",
+          "title": "State"
         },
-        "favorite_numbers": {
-          "items": {
-            "type": "number"
-          },
-          "type": "array"
+        "address": {
+          "type": "string",
+          "id": "address",
+          "title": "Address"
         },
         "hobby": {
-          "type": "array"
+          "type": "array",
+          "id": "hobby",
+          "title": "Hobby"
         },
         "balance": {
-          "type": "integer"
-        },
-        "zip_code": {
-          "type": "string"
+          "type": "integer",
+          "id": "balance",
+          "title": "Balance"
         }
-      }
+      },
+      "additionalProperties": false,
+      "requried": [
+        "hobby",
+        "city",
+        "name",
+        "favorite numbers",
+        "zip code",
+        "state",
+        "child",
+        "balance"
+      ],
+      "type": "object",
+      "id": "account"
     }
   }
 }

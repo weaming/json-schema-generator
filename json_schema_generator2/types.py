@@ -1,4 +1,5 @@
 import sys
+import re
 from copy import deepcopy
 
 
@@ -21,6 +22,12 @@ def get_schema_type_for(data, key=None):
 def entry(data, key=None):
     obj = get_schema_type_for(data, key)(data)
     return obj.gen()
+
+
+def underscore(name):
+    name = name.replace(' ', '_')
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
 class Base(object):
@@ -77,7 +84,7 @@ class ObjectType(Base):
     properties = {
         'properties': {},
         'requried': [],
-        "additionalProperties": False,
+        'additionalProperties': False,
     }
 
     @staticmethod
@@ -91,6 +98,9 @@ class ObjectType(Base):
                 rv['requried'].append(real_k)
 
             rv['properties'][real_k] = entry(v, k)
+            rv['properties'][real_k]['title'] = real_k.replace('_',
+                                                               ' ').title()
+            rv['properties'][real_k]['id'] = underscore(real_k)
 
 
 class EnumType(Base):
