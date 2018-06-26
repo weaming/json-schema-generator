@@ -1,5 +1,6 @@
 import sys
 import re
+import os
 from copy import deepcopy
 
 
@@ -101,9 +102,11 @@ class ObjectType(Base):
                 rv['required'].append(real_k)
 
             rv['properties'][real_k] = entry(v, k)
-            rv['properties'][real_k]['title'] = real_k.replace('_',
-                                                               ' ').title()
-            rv['properties'][real_k]['id'] = underscore(real_k)
+            if os.getenv('JSON_SCHEMA_TITLE'):
+                rv['properties'][real_k]['title'] = real_k.replace(
+                    '_', ' ').title()
+            if os.getenv('JSON_SCHEMA_ID'):
+                rv['properties'][real_k]['id'] = underscore(real_k)
 
 
 class EnumType(Base):

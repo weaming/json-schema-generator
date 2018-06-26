@@ -6,7 +6,7 @@ name = json-schema-generator
 pip = pip
 
 test:
-	generate-json-schema test.json
+	JSON_SCHEMA_ID=1 JSON_SCHEMA_TITLE=1 generate-json-schema test.json
 
 build:
 	python setup.py sdist

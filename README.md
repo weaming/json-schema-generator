@@ -16,6 +16,11 @@ $ generate-json-schema help
     generate-json-schema sample.json > output.schema.json
 ```
 
+## Envrioment variables
+
+* `JSON_SCHEMA_ID`
+* `JSON_SCHEMA_TITLE`
+
 ## Special rules to determine the type
 
 * suffix definitions
@@ -47,7 +52,6 @@ $ generate-json-schema help
 ```
 
 Will produce:
-
 
 ```json
 {
