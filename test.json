@@ -6,12 +6,14 @@
     "city": "",
     "state": "",
     "zip_code": "",
-    "balance": 3.14,
+    "balance": 100,
     "child": {
         "name": "",
-        "age": 13,
+        "age": 18,
         "gender!": "BOY"
-    }
+    },
+    "hobby": [],
+    "favorite_numbers": [3.14]
   }
 }
 

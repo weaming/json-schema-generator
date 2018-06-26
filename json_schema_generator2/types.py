@@ -65,11 +65,11 @@ class BooleanType(Base):
 
 class ArrayType(Base):
     json_type = "array"
-    properties = {'items': []}
 
     def after_gen(self, rv):
-        for x in self.data:
-            rv['items'].append(entry(x))
+        if len(self.data) > 0:
+            t = get_schema_type_for(self.data[0]).json_type
+            rv['items'] = {'type': t}
 
 
 class ObjectType(Base):

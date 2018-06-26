@@ -34,15 +34,18 @@ $ generate-json-schema help
     "city": "",
     "state": "",
     "zip_code": "",
-    "balance": 3.14,
+    "balance": 100,
     "child": {
         "name": "",
-        "age": 13,
+        "age": 18,
         "gender!": "BOY"
-    }
+    },
+    "hobby": [],
+    "favorite_numbers": [3.14]
   }
 }
 ```
+
 Will produce:
 
 
@@ -59,8 +62,10 @@ Will produce:
     "account": {
       "additionalProperties": false,
       "requried": [
+        "hobby",
         "city",
         "name",
+        "favorite_numbers",
         "state",
         "child",
         "balance",
@@ -69,18 +74,6 @@ Will produce:
       "type": "object",
       "properties": {
         "city": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "telephone": {
-          "type": "string"
-        },
-        "state": {
           "type": "string"
         },
         "child": {
@@ -106,8 +99,29 @@ Will produce:
             }
           }
         },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "favorite_numbers": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "hobby": {
+          "type": "array"
+        },
         "balance": {
-          "type": "number"
+          "type": "integer"
         },
         "zip_code": {
           "type": "string"
