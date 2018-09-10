@@ -14,7 +14,7 @@ gh_repo = 'https://github.com/weaming/json-schema-generator'
 setup(
     name='json-schema-generator2',  # Required
 
-    version='0.1.11',  # Required
+    version='0.1.12',  # Required
 
     description='Pretty print json contains python style coments, string literal.',  # Required
 

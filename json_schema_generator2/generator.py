@@ -45,20 +45,21 @@ def help():
     """)
 
 
-def main():
-    fp = None
-    if len(sys.argv) > 1:
-        fp = sys.argv[1]
-
-    if fp == 'help':
+def main(path=None):
+    if path == 'help':
         help()
         return
 
-    text = get_text(fp)
+    text = get_text(path)
     data = parse_text(text)
     g = Generator(data)
     g.output()
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--file', help='draft json file path')
+    args = parser.parse_args()
+
+    main(args.file)
