@@ -12,20 +12,18 @@ class Generator(object):
         self.include_origin = include_origin
         self.indent = indent
         self.schema_version = os.getenv(
-            'JSON_SCHEMA_VERSION', "http://json-schema.org/draft-04/schema#")
+            "JSON_SCHEMA_VERSION", "http://json-schema.org/draft-04/schema#"
+        )
 
     def meta(self):
-        return OrderedDict([
-            ('$schema', self.schema_version),
-            ('version', 1),
-        ])
+        return OrderedDict([("$schema", self.schema_version), ("version", 1)])
 
     def generate(self):
         rv = self.meta()
         body = entry(self.data)
         rv.update(body)
         if self.include_origin:
-            rv['$origin'] = self.data
+            rv["$origin"] = self.data
         return rv
 
     def output(self, filepath=None):
@@ -33,20 +31,32 @@ class Generator(object):
 
         print(c)
         if filepath:
-            with open(filepath, 'w') as f:
+            with open(filepath, "w") as f:
                 f.write(c)
 
 
 def help():
-    print(""" Usage:
+    print(
+        """ Usage:
     cat sample.json | generate-json-schema
     generate-json-schema sample.json
     generate-json-schema sample.json > output.schema.json
-    """)
+    """
+    )
 
 
-def main(path=None):
-    if path == 'help':
+def get_arg_path():
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file", help="draft json file path")
+    args = parser.parse_args()
+    return args.file
+
+
+def main():
+    path = get_arg_path()
+    if path == "help":
         help()
         return
 
@@ -57,9 +67,4 @@ def main(path=None):
 
 
 if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--file', help='draft json file path')
-    args = parser.parse_args()
-
-    main(args.file)
+    main()
