@@ -1,7 +1,7 @@
 .PHONY: test build install publish
 
 # the library name
-name = json-schema-generator
+name = json-schema-generator2
 # may change to pip3 or python3 -m pip, etc.
 pip = pip
 
