@@ -16,7 +16,7 @@ class Generator(object):
         )
 
     def meta(self):
-        return OrderedDict([("$schema", self.schema_version), ("version", 1)])
+        return OrderedDict([("$schema", self.schema_version)])
 
     def generate(self):
         rv = self.meta()
