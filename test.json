@@ -2,6 +2,7 @@
   "account": {
     "name": "",
     "telephone?": "",
+    "nationality!?": "CHN",
     "address?": "",
     "city": "",
     "state": "",

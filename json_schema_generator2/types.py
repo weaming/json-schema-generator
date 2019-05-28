@@ -91,15 +91,16 @@ class ObjectType(Base):
         'additionalProperties': False,
     }
 
-    @staticmethod
-    def get_real_key(k):
-        return k[:-1] if k[-1] in '?!' else k
+    def get_real_key(self, k):
+        return self.get_real_key(k[:-1]) if k[-1] in '?!' else k
 
     def after_gen(self, rv):
         for k, v in self.data.items():
             real_k = self.get_real_key(k)
             if not k.endswith('?'):
                 rv['required'].append(real_k)
+            else:
+                k = k[:-1]
 
             rv['properties'][real_k] = entry(v, k)
             if os.getenv('JSON_SCHEMA_TITLE'):
