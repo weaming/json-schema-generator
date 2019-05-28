@@ -1,5 +1,6 @@
 import sys
 import re
+import json
 import os
 from copy import deepcopy
 
@@ -83,6 +84,14 @@ class ArrayType(Base):
                 rv['items'] = {'type': t}
 
 
+def read_json(path):
+    path = os.path.expanduser(os.path.expandvars(path))
+    if not os.path.isfile(path):
+        return
+    with open(path) as f:
+        return json.load(f)
+
+
 class ObjectType(Base):
     json_type = "object"
     properties = {
@@ -90,6 +99,9 @@ class ObjectType(Base):
         'required': [],
         'additionalProperties': False,
     }
+    extra = read_json('~/.config/json-schema-generator/extra.json')
+    if extra and isinstance(extra, dict):
+        properties.update(extra)
 
     def get_real_key(self, k):
         return self.get_real_key(k[:-1]) if k[-1] in '?!' else k

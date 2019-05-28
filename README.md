@@ -26,7 +26,9 @@ $ generate-json-schema help
 * suffix definitions
     * `?`: optional
     * `!`: `enum`
+    * `!?`: optional `enum`
     * default: based on sample value
+* Will update `~/.config/json-schema-generator/extra.json` to every generated object.
 
 ## Example
 
@@ -35,19 +37,30 @@ $ generate-json-schema help
   "account": {
     "name": "",
     "telephone?": "",
+    "nationality!?": "CHN",
     "address?": "",
     "city": "",
     "state": "",
     "zip code": "",
     "balance": 100,
-    "child": {
+    "child": [{
         "name": "",
         "age": 18,
         "gender!": "BOY"
-    },
+    }],
     "hobby": [],
     "favorite numbers": [3.14]
   }
+}
+
+```
+
+And the content of `extra.json`:
+
+```
+{
+    "title": "example title",
+    "description": "example description"
 }
 ```
 
@@ -55,114 +68,97 @@ Will produce:
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "version": 1,
-  "additionalProperties": false,
-  "required": [
-    "account"
-  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
     "account": {
-      "title": "Account",
-      "required": [
-        "hobby",
-        "city",
-        "name",
-        "favorite numbers",
-        "zip code",
-        "state",
-        "child",
-        "balance"
-      ],
+      "type": "object",
       "properties": {
-        "city": {
-          "type": "string",
-          "id": "city",
-          "title": "City"
-        },
         "name": {
-          "type": "string",
-          "id": "name",
-          "title": "Name"
-        },
-        "favorite numbers": {
-          "items": {
-            "type": "number"
-          },
-          "type": "array",
-          "id": "favorite_numbers",
-          "title": "Favorite Numbers"
-        },
-        "child": {
-          "items": {
-            "additionalProperties": false,
-            "required": [
-              "age",
-              "gender",
-              "name"
-            ],
-            "type": "object",
-            "properties": {
-              "gender": {
-                "enum": [
-                  "BOY"
-                ],
-                "type": "string",
-                "id": "gender",
-                "title": "Gender"
-              },
-              "age": {
-                "type": "integer",
-                "id": "age",
-                "title": "Age"
-              },
-              "name": {
-                "type": "string",
-                "id": "name",
-                "title": "Name"
-              }
-            }
-          },
-          "type": "array",
-          "id": "child",
-          "title": "Child"
-        },
-        "zip code": {
-          "type": "string",
-          "id": "zip_code",
-          "title": "Zip Code"
+          "type": "string"
         },
         "telephone": {
-          "type": "string",
-          "id": "telephone",
-          "title": "Telephone"
+          "type": "string"
         },
-        "state": {
+        "nationality": {
           "type": "string",
-          "id": "state",
-          "title": "State"
+          "enum": [
+            "CHN"
+          ]
         },
         "address": {
-          "type": "string",
-          "id": "address",
-          "title": "Address"
+          "type": "string"
         },
-        "hobby": {
-          "type": "array",
-          "id": "hobby",
-          "title": "Hobby"
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "zip code": {
+          "type": "string"
         },
         "balance": {
-          "type": "integer",
-          "id": "balance",
-          "title": "Balance"
+          "type": "integer"
+        },
+        "child": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "age": {
+                "type": "integer"
+              },
+              "gender": {
+                "type": "string",
+                "enum": [
+                  "BOY"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "age",
+              "gender"
+            ],
+            "additionalProperties": false,
+            "title": "example title",
+            "description": "example description"
+          }
+        },
+        "hobby": {
+          "type": "array"
+        },
+        "favorite numbers": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
         }
       },
+      "required": [
+        "name",
+        "city",
+        "state",
+        "zip code",
+        "balance",
+        "child",
+        "hobby",
+        "favorite numbers"
+      ],
       "additionalProperties": false,
-      "type": "object",
-      "id": "account"
+      "title": "example title",
+      "description": "example description"
     }
-  }
+  },
+  "required": [
+    "account"
+  ],
+  "additionalProperties": false,
+  "title": "example title",
+  "description": "example description"
 }
 ```
